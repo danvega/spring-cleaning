@@ -1,0 +1,49 @@
+### All talks
+GET http://localhost:8080/api/talks
+
+### One talk
+GET http://localhost:8080/api/talks/1
+
+### Find a talk by title
+GET http://localhost:8080/api/talks/search?title=JSON with Jackson 3
+
+### The schedule feed for the mobile app
+GET http://localhost:8080/api/talks/export
+
+### Add a talk
+POST http://localhost:8080/api/talks
+Content-Type: application/json
+
+{
+  "title": "Virtual Threads in Practice",
+  "speaker": "Priya Patel",
+  "startsAt": "2026-10-02T10:00:00",
+  "room": "Room 101",
+  "seats": 150
+}
+
+### Add a talk with no seat count
+POST http://localhost:8080/api/talks
+Content-Type: application/json
+
+{
+  "title": "Hallway Track",
+  "speaker": "Everyone",
+  "startsAt": "2026-10-02T12:00:00",
+  "room": null,
+  "seats": null
+}
+
+### H2 console
+GET http://localhost:8080/h2-console
+
+### The speaker for talk 1 (through Feign, with retries against a flaky API)
+GET http://localhost:8080/api/talks/1/speaker
+
+### Version 2.0 of the talks list
+GET http://localhost:8080/api/talks
+X-API-Version: 2.0
+
+### A version we don't support
+GET http://localhost:8080/api/talks
+X-API-Version: 3.0
