@@ -1,9 +1,8 @@
 package dev.danvega.talks.talk;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.springframework.stereotype.Component;
+import tools.jackson.databind.cfg.DateTimeFeature;
+import tools.jackson.databind.json.JsonMapper;
 
 import java.util.List;
 
@@ -14,15 +13,13 @@ import java.util.List;
 @Component
 public class ScheduleExporter {
 
-	private final ObjectMapper mapper = new ObjectMapper().registerModule(new JavaTimeModule());
+	// Jackson 3 writes dates as ISO-8601 strings by default. The mobile app still expects arrays.
+	private final JsonMapper mapper = JsonMapper.builder()
+			.enable(DateTimeFeature.WRITE_DATES_AS_TIMESTAMPS)
+			.build();
 
 	public String export(List<Talk> talks) {
-		try {
-			return mapper.writeValueAsString(talks);
-		}
-		catch (JsonProcessingException e) {
-			throw new IllegalStateException("Could not export the schedule", e);
-		}
+		return mapper.writeValueAsString(talks);
 	}
 
 }

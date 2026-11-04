@@ -1,11 +1,10 @@
 package dev.danvega.talks.talk;
 
+import org.jspecify.annotations.Nullable;
 import org.springframework.data.repository.ListCrudRepository;
-import org.springframework.lang.Nullable;
 
 public interface TalkRepository extends ListCrudRepository<Talk, Long> {
 
-	@Nullable
-	Talk findByTitleIgnoreCase(String title);
+	@Nullable Talk findByTitleIgnoreCase(String title);
 
 }

@@ -1,7 +1,7 @@
 package dev.danvega.talks.talk;
 
+import org.jspecify.annotations.Nullable;
 import org.springframework.data.annotation.Id;
-import org.springframework.lang.Nullable;
 
 import java.time.LocalDateTime;
 

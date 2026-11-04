@@ -1,4 +1,4 @@
-@NonNullApi
+@NullMarked
 package dev.danvega.talks;
 
-import org.springframework.lang.NonNullApi;
+import org.jspecify.annotations.NullMarked;

@@ -1,6 +1,6 @@
 package dev.danvega.talks.talk;
 
-import org.springframework.lang.Nullable;
+import org.jspecify.annotations.Nullable;
 
 import java.time.LocalDateTime;
 
