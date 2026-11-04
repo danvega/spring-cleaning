@@ -1,13 +1,12 @@
 package dev.danvega.talks.speaker;
 
-import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.service.annotation.GetExchange;
 
-@FeignClient(name = "speakers", url = "${speakers.url}")
+// The base URL comes from spring.http.serviceclient.speakers in application.yaml
 public interface SpeakerClient {
 
-	@GetMapping("/speakers/{name}")
+	@GetExchange("/speakers/{name}")
 	SpeakerProfile get(@PathVariable String name);
 
 }

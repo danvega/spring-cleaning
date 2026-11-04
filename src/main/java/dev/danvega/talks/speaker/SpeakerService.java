@@ -1,11 +1,10 @@
 package dev.danvega.talks.speaker;
 
-import feign.FeignException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.retry.annotation.Backoff;
-import org.springframework.retry.annotation.Retryable;
+import org.springframework.resilience.annotation.Retryable;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpServerErrorException;
 
 @Service
 public class SpeakerService {
@@ -18,8 +17,8 @@ public class SpeakerService {
 		this.speakers = speakers;
 	}
 
-	// maxAttempts counts the first call too: 1 call + 3 retries
-	@Retryable(retryFor = FeignException.class, maxAttempts = 4, backoff = @Backoff(delay = 200, multiplier = 2))
+	// maxRetries counts only the retries: 1 call + 3 retries, the same as maxAttempts = 4 before
+	@Retryable(maxRetries = 3, includes = HttpServerErrorException.class, delay = 200, multiplier = 2)
 	public SpeakerProfile profile(String name) {
 		log.info("Calling the speaker API for {}", name);
 		return speakers.get(name);

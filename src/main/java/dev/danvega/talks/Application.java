@@ -1,13 +1,14 @@
 package dev.danvega.talks;
 
+import dev.danvega.talks.speaker.SpeakerClient;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.openfeign.EnableFeignClients;
-import org.springframework.retry.annotation.EnableRetry;
+import org.springframework.resilience.annotation.EnableResilientMethods;
+import org.springframework.web.service.registry.ImportHttpServices;
 
 @SpringBootApplication
-@EnableRetry
-@EnableFeignClients
+@EnableResilientMethods
+@ImportHttpServices(group = "speakers", types = SpeakerClient.class)
 public class Application {
 
 	public static void main(String[] args) {

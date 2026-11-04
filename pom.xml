@@ -15,7 +15,6 @@
 	<description>A conference talks API for the talk "Spring Cleaning: What Boot 4 Lets You Delete"</description>
 	<properties>
 		<java.version>21</java.version>
-		<spring-cloud.version>2025.1.4</spring-cloud.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -35,16 +34,8 @@
 			<artifactId>spring-boot-h2console</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.springframework.retry</groupId>
-			<artifactId>spring-retry</artifactId>
-		</dependency>
-		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-aspectj</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-openfeign</artifactId>
+			<artifactId>spring-boot-starter-restclient</artifactId>
 		</dependency>
 
 		<dependency>
@@ -57,25 +48,12 @@
 			<artifactId>spring-boot-starter-webmvc-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<!-- Only here for WebTestClient in the end-to-end tests. It still brings WebFlux with it. -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-webtestclient</artifactId>
+			<artifactId>spring-boot-resttestclient</artifactId>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>org.springframework.cloud</groupId>
-				<artifactId>spring-cloud-dependencies</artifactId>
-				<version>${spring-cloud.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
 
 	<build>
 		<plugins>

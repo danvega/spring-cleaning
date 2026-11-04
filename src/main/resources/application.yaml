@@ -7,7 +7,14 @@ spring:
       enabled: true
   datasource:
     generate-unique-name: false
-
-# The speaker API. In this demo it's a flaky fake inside the app, see FakeSpeakerApi.
-speakers:
-  url: http://localhost:${server.port:8080}/fake
+  # The speaker API. In this demo it's a flaky fake inside the app, see FakeSpeakerApi.
+  http:
+    serviceclient:
+      speakers:
+        base-url: http://localhost:${server.port:8080}/fake
+  mvc:
+    apiversion:
+      use:
+        header: X-API-Version
+      supported: 1.0,2.0
+      default: "1.0"

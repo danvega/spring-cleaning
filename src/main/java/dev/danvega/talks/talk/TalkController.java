@@ -30,9 +30,14 @@ public class TalkController {
 		this.speakers = speakers;
 	}
 
-	@GetMapping
+	@GetMapping(version = "1.0")
 	public List<Talk> findAll() {
 		return talks.findAll();
+	}
+
+	@GetMapping(version = "2.0")
+	public List<TalkSummary> findAllSummaries() {
+		return talks.findAll().stream().map(TalkSummary::of).toList();
 	}
 
 	@GetMapping("/{id}")
